@@ -1,7 +1,7 @@
-import PySimpleGUI as sg
+import streamlit as st
 import psycopg2
 
-sg.theme("LightGrey5")
+.theme("LightGrey5")
 ###TELA DE CADASTRO ALUNO
 
 ###FUNCAO CADASTRO ALUNO
@@ -198,7 +198,7 @@ lista = []
 indice = 0
 
 window1, window2 = aba1(), None
-# Run the Event Loop
+# Run the Event LoopWaiting f
 while True:
     window, event, values = sg.read_all_windows()
     if event == sg.WIN_CLOSED:
