@@ -400,3 +400,22 @@ JOIN matricula m ON a.id_aluno = m.id_alu_mat
 JOIN turma t ON m.cod_turma_mat = t.cod_turm
 JOIN curso c ON t.cod_curso_turm = c.cod_curso
 WHERE a.id_aluno = 2;
+
+
+
+-- Criação de Usuários
+CREATE TABLE IF NOT EXISTS usuario (
+	id_user SERIAL PRIMARY KEY NOT NULL,
+	user_name VARCHAR(80) NOT NULL,
+	user_login VARCHAR(100) NOT NULL,
+	user_password TEXT NOT NULL
+	);
+	
+	
+-- SELECT * FROM information_schema.columns WHERE table_catalog = 'SIPA_DB';
+
+
+
+SELECT * FROM usuario
+TRUNCATE TABLE usuario RESTART IDENTITY
+
