@@ -82,22 +82,38 @@ def tela_login():
                 
                 cache["login"] = user["login"]
                 cache["password"] = user["senha"]
+                return True
             
             else:
                 st.error("Login ou senha inválidos")
 
-
         elif button_cad:
             popup_cadastrar()
 
-            st.write(cache)
 
 
 @st.dialog("Cadastro | SIPA")
 def popup_cadastrar():
+        
+        st_cad_errors = 0
+
         st.write("Realize o seu sign-up aqui.")
-        user_cad_name: str = st.text_input("Nome", placeholder="Digite seu nome aqui")
-        user_cad_email: str = st.text_input("E-mail",  placeholder="Digite seu e-mail aqui")
+        
+        user_cad_name: str = st.text_input("Nome", placeholder="Digite seu nome aqui", autocomplete='name')
+        if user_cad_name:
+            if len(user_cad_name.split(' ')) <= 1:
+                st.error("Coloque seu nome completo.")
+                st_cad_errors += 1
+
+        user_cad_email: str = st.text_input("E-mail",  placeholder="Digite seu e-mail aqui", autocomplete='email')
+        if user_cad_email:
+            if "@" not in user_cad_email:
+                st.error("Coloque um e-mail válido.")
+                st_cad_errors += 1
+            elif "." not in user_cad_email:
+                st.error("Coloque um e-mail válido.")
+                st_cad_errors += 1
+
         user_password: str = st.text_input("Senha",type="password", placeholder="Digite sua senha aqui")
         user_password_conf: str = st.text_input("Confirmar senha", type="password",placeholder="Confirme sua senha")
         user_cad_button = st.button(label="Cadastrar", key="button_cadastrar_finish")
