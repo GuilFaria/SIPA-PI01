@@ -4,9 +4,15 @@ from dotenv import load_dotenv, dotenv_values
 import hashlib
 import io
 import os
+from streamlit_router import StreamlitRouter
 
 #------------------------Pre-Works---------------------------#
 
+
+#Usuário e senha teste: guilhe@faria.com, gui123
+
+
+ 
 load_dotenv()
 
 host = os.getenv("HOST_DB")
@@ -49,7 +55,7 @@ def tela_cadastro_aluno():
     return None
 
 
-def tela_login():
+def tela_login(router: StreamlitRouter):
     
     st.header("SIPA - Brasil")
 
@@ -65,7 +71,7 @@ def tela_login():
         
         with col2:
             button_cad = st.form_submit_button(label="Cadastrar")
-        
+        print(router.endpoint_session_name)
         if enter_button:
             user = {}
             
@@ -82,7 +88,8 @@ def tela_login():
                 
                 cache["login"] = user["login"]
                 cache["password"] = user["senha"]
-                return True
+                print(router.urls.script_name)
+                return router.redirect(*router.build("teste_main"))
             
             else:
                 st.error("Login ou senha inválidos")
@@ -217,7 +224,7 @@ def user_auth(login, password_enc):
         return False
    
     
-tela_login()
+
 
     
 # class User():

@@ -1,6 +1,15 @@
 import streamlit as st
+from streamlit_router import StreamlitRouter
 
-st.write('ola') 
+
+
+def teste_main(router):
+    st.write('ola')
+    bt_teste = st.button('teste')
+    if bt_teste:
+        print(router.endpoint_session_name)
+        print(router.urls.script_name)
+        return router.redirect(*router.build("tela_login"))
 
 
 

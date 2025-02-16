@@ -1,10 +1,19 @@
 import streamlit as st
+import os
+
+from streamlit_router import StreamlitRouter
+
+from login import tela_login
+from SIPA import teste_main
 
 
 cache = st.session_state
 
-main_pg_cadastro = { "hidden": [st.Page(r".\login.py", title="SIPA Brasil")]}
+router = StreamlitRouter()
 
-pg = st.navigation(main_pg_cadastro, position='hidden')
 
-pg.run()
+router.register(tela_login, "/")
+router.register(teste_main, "/main")
+
+
+router.serve()
